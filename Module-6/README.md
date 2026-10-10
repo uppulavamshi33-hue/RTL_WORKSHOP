@@ -1,4 +1,4 @@
-# PHYSICAL DESIGN — DAY 1
+# PHYSICAL DESIGN — Module 1
 > **Digital ASIC Design | RTL-to-GDSII | SKY130 | OpenLane | Synthesis and Timing**
 
 ## Introduction
