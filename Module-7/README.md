@@ -1,4 +1,4 @@
-# Day 7 — Floorplan Design, Cell Placement & Library Characterization
+# Module 7 — Floorplan Design, Cell Placement & Library Characterization
 
 > **ASIC Physical Design | OpenLane | SKY130 | `picorv32a` | Floorplanning and Placement**
 
