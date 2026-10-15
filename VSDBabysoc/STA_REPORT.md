@@ -119,27 +119,9 @@ The following table is the data source for all four graphs below. Values are in 
 | **No.** | **PVT corner** | **Hold slack (ns)** | **Setup slack (ns)** | **WNS (ns)** | **TNS (ns)** | **Setup status** |
 |---:|---|---:|---:|---:|---:|---|
 | 1 | `FF_100C_1v65` | 0.263 | 7.915 | 0.000 | 0.000 | PASS |\n| 2 | `FF_100C_1v95` | 0.214 | 8.684 | 0.000 | 0.000 | PASS |\n| 3 | `FF_n40C_1v56` | 0.318 | 6.681 | 0.000 | 0.000 | PASS |\n| 4 | `FF_n40C_1v65` | 0.279 | 7.398 | 0.000 | 0.000 | PASS |\n| 5 | `FF_n40C_1v76` | 0.242 | 8.126 | 0.000 | 0.000 | PASS |\n| 6 | `FF_n40C_1v95` | 0.205 | 8.793 | 0.000 | 0.000 | PASS |\n| 7 | `SS_100C_1v40` | 0.884 | -3.874 | -3.870 | -382.640 | FAIL |\n| 8 | `SS_100C_1v60` | 0.612 | 1.536 | 0.000 | 0.000 | PASS |\n| 9 | `SS_n40C_1v28` | 1.735 | -28.764 | -28.760 | -13842.750 | FAIL |\n| 10 | `SS_n40C_1v35` | 1.284 | -16.082 | -16.080 | -6284.190 | FAIL |\n| 11 | `SS_n40C_1v40` | 1.074 | -11.274 | -11.270 | -3410.520 | FAIL |\n| 12 | `SS_n40C_1v44` | 0.941 | -7.936 | -7.930 | -1986.430 | FAIL |\n| 13 | `SS_n40C_1v60` | 0.618 | -0.512 | -0.510 | -2.380 | FAIL |\n| 14 | `SS_n40C_1v76` | 0.463 | 3.187 | 0.000 | 0.000 | PASS |\n| 15 | `TT_025C_1v80` | 0.329 | 6.742 | 0.000 | 0.000 | PASS |\n| 16 | `TT_100C_1v80` | 0.311 | 6.884 | 0.000 | 0.000 | PASS |\n
-## **10. PVT Wave Graphs**
 
-Each graph uses the same corner order and values shown in the table.
 
-### **10.1 WNS by PVT Corner**
-
-![WNS PVT graph](WNS_PVT.png)
-
-### **10.2 TNS by PVT Corner**
-
-![TNS PVT graph](TNS_PVT.png)
-
-### **10.3 Hold Slack by PVT Corner**
-
-![Hold slack PVT graph](Hold_Slack_PVT.png)
-
-### **10.4 Setup Slack by PVT Corner**
-
-![Setup slack PVT graph](Setup_Slack_PVT.png)
-
-## **11. Results Discussion**
+## **10. Results Discussion**
 
 In these illustrative values:
 - The six FF corners and both TT corners show non-negative setup slack.
@@ -149,7 +131,7 @@ In these illustrative values:
 
 These conclusions apply only to the modified illustrative values in this document and do not replace the source report's measured results.
 
-## **12. Recommended Next Steps**
+## **11. Recommended Next Steps**
 
 1. Inspect detailed timing paths at the worst setup corners.
 2. Verify the clock period, clock source, uncertainty, and timing exceptions in the SDC.
@@ -158,11 +140,11 @@ These conclusions apply only to the modified illustrative values in this documen
 5. Make timing changes only after checking the constraints and critical paths.
 6. Repeat setup and hold analysis at all required PVT corners after any design changes.
 
-## **13. Conclusion**
+## **12. Conclusion**
 
 Multi-corner STA helps evaluate whether timing requirements are met under varied process, voltage, and temperature conditions. The modified example values show setup violations at selected SS corners while hold slack remains positive throughout the table. Actual closure must be established using the design's real OpenSTA/OpenROAD reports rather than illustrative values.
 
-## **14. References**
+## **13. References**
 
 - [VSDBabySoC project directory](https://github.com/cpatilabhijith/RTL_Workspace/tree/main/VSDBabySoC)
 - [OpenROAD project](https://github.com/The-OpenROAD-Project/OpenROAD)
