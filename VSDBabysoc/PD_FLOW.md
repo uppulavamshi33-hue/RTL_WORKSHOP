@@ -5,7 +5,7 @@ This README records the VSDBabySoC physical-design sequence, covering floorplan 
 
 The physical flow follows the RTL, synthesis, and gate-level simulation (GLS) work. The timing figures below are deliberately revised example values for this alternate README; they are not a replacement for measured sign-off data.
 
-> **Example status for this rewritten report:** 16 PVT corners are shown. Hold remains positive in every example row, while six slow-slow (SS) corners have setup violations. These adjusted values are illustrative only and must not be represented as results measured by OpenROAD.
+> **status:** 16 PVT corners are shown. Hold remains positive in every example row, while six slow-slow (SS) corners have setup violations. These adjusted values are illustrative only and must not be represented as results measured by OpenROAD.
 
 > **Parasitic-method note:** the source report describes analysis of `5_route.odb` with `5_route.sdc` using `estimate_parasitics -global_routing`. This estimates parasitics from global routing and should not be described as detailed-route SPEF-based sign-off.
 
@@ -390,32 +390,10 @@ The values below are modified illustrative examples, expressed in nanoseconds. T
 | 15 | `TT_025C_1v80` | 0.316 | 6.694 | 0.000 | 0.000 | MET |
 | 16 | `TT_100C_1v80` | 0.317 | 6.812 | 0.000 | 0.000 | MET |
 
-> **Example-data note:** These values are intentionally modified for presentation. For sign-off, use measured STA output and regenerate the table and graphs from that data.
+> **Round note:** These values are intentionally modified for presentation. For sign-off, use measured STA output and regenerate the table and graphs from that data.
 
-### **8.4 PVT timing wave graphs**
-The following plots were regenerated from the revised example table above. Corner order matches the table. Treat them as illustrative visuals, not as measured sign-off graphs.
-
-![Modified example graph: WNS by PVT corner](pvt_wns_wave.png)
-
-
-*Figure 11. Example WNS values by corner; six SS corners show negative slack.*
-
-![Modified example graph: TNS by PVT corner](pvt_tns_wave.png)
-
-
-*Figure 12. Example TNS values, with the largest negative total at `SS_n40C_1v28`.*
-
-![Modified example graph: setup slack by PVT corner](pvt_setup_slack_wave.png)
-
-
-*Figure 13. Revised example maximum/setup slack across the 16 corners.*
-
-![Modified example graph: hold slack by PVT corner](pvt_hold_slack_wave.png)
-
-*Figure 14. Revised example minimum/hold slack; all plotted values are positive.*
-
-## **9. Results and interpretation**
-### **9.1 Overall result**
+## **8. Results and interpretation**
+### **8.1 Overall result**
 The table below summarizes the revised illustrative values, not the source PDF's measured results.
 
 | Check | Result in this modified example |
@@ -430,7 +408,7 @@ The table below summarizes the revised illustrative values, not the source PDF's
 | Worst table WNS | `-27.840 ns` at `SS_n40C_1v28` |
 | Worst table TNS | `-13220.600 ns` at `SS_n40C_1v28` |
 
-### **9.2 Slow-corner setup violations**
+### **8.2 Slow-corner setup violations**
 | Corner | Max/setup slack (ns) | WNS (ns) | TNS (ns) |
 |---|---:|---:|---:|
 | `SS_100C_1v40` | -4.125 | -4.120 | -410.260 |
@@ -440,7 +418,7 @@ The table below summarizes the revised illustrative values, not the source PDF's
 | `SS_n40C_1v44` | -8.105 | -8.100 | -2055.120 |
 | `SS_n40C_1v60` | -0.425 | -0.420 | -2.050 |
 
-### **9.3 Interpretation**
+### **8.3 Interpretation**
 - All six FF and both TT corners pass the reported setup checks. Their maximum/setup slack remains positive.
 - The SS setup result depends strongly on voltage and temperature. In the `SS_n40C` series, the reported setup slack trends downward as supply voltage is reduced from 1.76 V to 1.28 V in this example dataset.
 - `SS_n40C_1v60` is a small but real setup violation (`-0.300 ns`); do not label it as passing.
@@ -448,14 +426,14 @@ The table below summarizes the revised illustrative values, not the source PDF's
 - Hold is met at every reported corner; the smallest hold slack in the table is `+0.205 ns`.
 - The PDF notes that PLL and DAC libraries were loaded in the corner analysis. The exact Liberty selection and constraints should remain reproducible through the STA script/configuration used for the run.
 
-### **9.4 Critical-path follow-up**
+### **8.4 Critical-path follow-up**
 The post-route PDF provides the corner summary and graphs, but it does not include a complete expanded critical-path report for every failing post-route corner. The separate earlier synthesized-netlist STA report contains an example long logic/adder carry path from `core/CPU_is_addi_a3_reg` toward `core/CPU_Xreg_value_a4_reg[27][30]`. Treat that as a useful hypothesis for debugging, **not as proof that the identical path and delay are the post-route worst path**.
 
 To confirm the post-route critical path, load the routed database and report the max-delay path at the failing corner (starting with `SS_n40C_1v28`). Save the actual command script and report output under `reports/` before documenting exact startpoint, endpoint, arrival time, required time, and slack.
 
 One supplied GUI chart view displayed **42 unconstrained pins**. Recheck the current SDC and the actual run's `report_checks` / `check_setup` output to determine whether those pins are expected, intentionally unconstrained, or missing constraints. An unconstrained-pin count should not be ignored during timing sign-off.
 
-## **10. Limitations and next steps**
+## **9. Limitations and next steps**
 - [ ] Record placement utilization, instance count, legalization status, and any final overflow values from the placement logs.
 - [ ] Record CTS buffer count, clock skew, and insertion latency from the CTS reports.
 - [ ] Record detailed-route completion, unrouted-net count, DRC count, and antenna-check result from the actual route logs/reports.
@@ -467,7 +445,7 @@ One supplied GUI chart view displayed **42 unconstrained pins**. Recheck the cur
 
 Possible setup-timing optimization experiments include reviewing the clock period and SDC assumptions, optimizing the critical combinational/adder path, and applying cell resizing or buffering through the supported flow. Every change must be followed by setup **and** hold checks at all required corners. Do not relax timing constraints merely to make the report pass unless the new clock specification is justified by the design requirements.
 
-## **11. References**
+## **10. References**
 - [OpenROAD-flow-scripts](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts) — physical-design flow.
 - [VSDBabySoC reference RTL](https://github.com/manili/VSDBabySoC) — SoC design context.
 - [SkyWater SKY130 HD library](https://github.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd) — standard-cell library and timing views.
