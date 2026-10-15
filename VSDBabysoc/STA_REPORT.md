@@ -1,4 +1,4 @@
-# **VSDBabySoC — Multi-Corner Static Timing Review**
+# **VSDBabySoC — Multi-Corner Static Timing Analysis Review**
 
 ## **1. Project Overview**
 
@@ -128,7 +128,7 @@ Positive hold slack indicates the requirement is satisfied; negative slack indic
 
 **Total Negative Slack (TNS)** sums the negative slack values from violating setup paths. More negative values indicate a larger accumulated timing deficit.
 
-## **9. Modified PVT Timing Table**
+## **9.  PVT Timing Table**
 
 The following table is the data source for all four graphs below. Values are in nanoseconds and have been deliberately modified for this alternate example; they are not measured output from a fresh STA run.
 
@@ -151,27 +151,9 @@ The following table is the data source for all four graphs below. Values are in 
 | 15 | `TT_025C_1v80` | 0.329 | 6.742 | 0.000 | 0.000 | PASS |
 | 16 | `TT_100C_1v80` | 0.311 | 6.884 | 0.000 | 0.000 | PASS |
 
-## **10. PVT Wave Graphs**
 
-Each graph uses the same corner order and values shown in the table.
 
-### **10.1 WNS by PVT Corner**
-
-![WNS PVT graph](WNS_PVT.png)
-
-### **10.2 TNS by PVT Corner**
-
-![TNS PVT graph](TNS_PVT.png)
-
-### **10.3 Hold Slack by PVT Corner**
-
-![Hold slack PVT graph](Hold_Slack_PVT.png)
-
-### **10.4 Setup Slack by PVT Corner**
-
-![Setup slack PVT graph](Setup_Slack_PVT.png)
-
-## **11. Results Discussion**
+## **10. Results Discussion**
 
 In these illustrative values:
 - The six FF corners and both TT corners show non-negative setup slack.
@@ -181,7 +163,7 @@ In these illustrative values:
 
 These conclusions apply only to the modified illustrative values in this document and do not replace the source report's measured results.
 
-## **12. Recommended Next Steps**
+## **11. Recommended Next Steps**
 
 1. Inspect detailed timing paths at the worst setup corners.
 2. Verify the clock period, clock source, uncertainty, and timing exceptions in the SDC.
@@ -190,11 +172,11 @@ These conclusions apply only to the modified illustrative values in this documen
 5. Make timing changes only after checking the constraints and critical paths.
 6. Repeat setup and hold analysis at all required PVT corners after any design changes.
 
-## **13. Conclusion**
+## **12. Conclusion**
 
 Multi-corner STA helps evaluate whether timing requirements are met under varied process, voltage, and temperature conditions. The modified example values show setup violations at selected SS corners while hold slack remains positive throughout the table. Actual closure must be established using the design's real OpenSTA/OpenROAD reports rather than illustrative values.
 
-## **14. References**
+## **13. References**
 
 - [VSDBabySoC project directory](https://github.com/cpatilabhijith/RTL_Workspace/tree/main/VSDBabySoC)
 - [OpenROAD project](https://github.com/The-OpenROAD-Project/OpenROAD)
