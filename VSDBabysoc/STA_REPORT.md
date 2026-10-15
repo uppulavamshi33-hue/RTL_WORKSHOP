@@ -1,4 +1,4 @@
-# **VSDBabySoC — Multi-Corner Static Timing Review**
+# **VSDBabySoC — Multi-Corner Static Timing Analysis(STA) Review**
 
 ## **1. Project Overview**
 
